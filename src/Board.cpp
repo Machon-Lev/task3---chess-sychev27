@@ -33,6 +33,8 @@ Board::Board()
 		     {black_rook,black_knight,black_bishop,black_queen,black_king,black_bishop,black_knight,black_rook}};
 
 	torn = player_1;
+	whiteKingPlace = { 0 , 4};
+	blackKingPlace = { 7, 4 };
 }
 
 int Board::move(string sourceAndDest)

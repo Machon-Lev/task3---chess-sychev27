@@ -15,3 +15,8 @@ int King::move(int sourceRow, int sourceCol, int destRow, int destCol) const
     board->moveOfPiece(sourceRow, sourceCol, destRow, destCol);
     return 42;
 }
+
+bool King::ifMakeChess(int sourceRow, int sourceCol) const
+{
+    return false;
+}

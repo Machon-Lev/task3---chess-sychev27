@@ -9,11 +9,18 @@ using std::string;
 class Piece;
 enum Player;
 
+struct KingPlace
+{
+	int row;
+	int col;
+};
 
 class Board
 {
 	Player torn;
 	vector<vector<Piece*>> board;
+	KingPlace whiteKingPlace;
+	KingPlace blackKingPlace;
 
 public:
 	Board();

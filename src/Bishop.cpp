@@ -7,3 +7,8 @@ int Bishop::move(int sourceRow, int sourceCol, int destRow, int destCol) const
 {
     return 42;
 }
+
+bool Bishop::ifMakeChess(int sourceRow, int sourceCol) const
+{
+    return false;
+}

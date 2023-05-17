@@ -22,4 +22,5 @@ public:
     Player getPlayer();
     char getType();
     virtual int move(int sourceRow, int sourceCol, int destRow, int destCol) const = 0;
+    virtual bool ifMakeChess(int sourceRow, int sourceCol) const = 0;
 };

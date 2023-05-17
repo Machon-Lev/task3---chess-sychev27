@@ -52,3 +52,65 @@ int Rook::move(int sourceRow, int sourceCol, int destRow, int destCol) const
     board->moveOfPiece(sourceRow, sourceCol, destRow, destCol);
     return 42;
 }
+
+bool Rook::ifMakeChess(int sourceRow, int sourceCol) const
+{
+    int from;
+    if (sourceRow < 7) 
+    {
+        from = sourceRow + 1;
+        for (from; from <= 7; from++)
+        {
+            if (board->getBoard()[from][sourceCol] != nullptr)
+            {
+                if (board->getBoard()[from][sourceCol]->getType() == 'k' && board->getBoard()[from][sourceCol]->getPlayer() != player)
+                    return true;
+                else
+                    break;
+            }
+        }
+    }
+    if (sourceRow > 0)
+    {
+        from = sourceRow - 1;
+        for (from; from >= 0; from--)
+        {
+            if (board->getBoard()[from][sourceCol] != nullptr)
+            {
+                if (board->getBoard()[from][sourceCol]->getType() == 'k' && board->getBoard()[from][sourceCol]->getPlayer() != player)
+                    return true;
+                else
+                    break;
+            }
+        }
+    }
+    if (sourceCol < 7)
+    {
+        from = sourceCol + 1;
+        for (from; from <= 7; from++)
+        {
+            if (board->getBoard()[sourceRow][from] != nullptr)
+            {
+                if (board->getBoard()[sourceRow][from]->getType() == 'k' && board->getBoard()[sourceRow][from]->getPlayer() != player)
+                    return true;
+                else
+                    break;
+            }
+        }
+    }
+    if (sourceCol > 0)
+    {
+        from = sourceCol - 1;
+        for (from; from >= 0; from--)
+        {
+            if (board->getBoard()[sourceRow][from] != nullptr)
+            {
+                if (board->getBoard()[sourceRow][from]->getType() == 'k' && board->getBoard()[sourceRow][from]->getPlayer() != player)
+                    return true;
+                else
+                    break;
+            }
+        }
+    }
+    return false;
+}
