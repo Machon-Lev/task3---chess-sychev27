@@ -26,13 +26,10 @@ int main()
 		42 - the last movement was legal, next turn 
 		*/
 
-		/**/ 
-		{ // put your code here instead that code
-			cout << "code response >> ";
-			//cin >> codeResponse;
-			codeResponse = myBoard.move(res);
-		}
-		/**/
+
+
+		codeResponse = myBoard.move(res);
+
 
 		a.setCodeResponse(codeResponse);
 		res = a.getInput(); 
