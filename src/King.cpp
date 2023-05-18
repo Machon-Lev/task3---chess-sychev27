@@ -3,20 +3,18 @@
 King::King(Player player, char type, Board* board) : Piece(player, type, board)
 {}
 
-int King::move(int sourceRow, int sourceCol, int destRow, int destCol) const
+bool King::ifLigalMove(int sourceRow, int sourceCol, int destRow, int destCol) const
 {
     int rowDifference = abs(sourceRow - destRow);
     int colDifference = abs(sourceCol - destCol);
 
     if (rowDifference > 1 || colDifference > 1)
-        return 21;
+        return false;
 
-    board->changeTorn();
-    board->moveOfPiece(sourceRow, sourceCol, destRow, destCol);
-    return 42;
+    return true;
 }
 
-bool King::ifMakeChess(int sourceRow, int sourceCol) const
+bool King::ifMakeCheck(int sourceRow, int sourceCol) const
 {
     return false;
 }

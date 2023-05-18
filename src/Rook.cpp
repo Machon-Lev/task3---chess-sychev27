@@ -3,10 +3,10 @@
 Rook::Rook(Player player, char type, Board* board) : Piece(player, type, board)
 {}
 
-int Rook::move(int sourceRow, int sourceCol, int destRow, int destCol) const
+bool Rook::ifLigalMove(int sourceRow, int sourceCol, int destRow, int destCol) const
 {
     if (sourceRow != destRow && sourceCol != destCol)
-        return 21;
+        return false;
 
     int from, to;
     if (sourceRow == destRow)
@@ -25,7 +25,7 @@ int Rook::move(int sourceRow, int sourceCol, int destRow, int destCol) const
         for (from; from <= to; from++)
         {
             if (board->getBoard()[sourceRow][from] != nullptr)
-                return 21;
+                return false;
         }
     }
     else
@@ -44,16 +44,14 @@ int Rook::move(int sourceRow, int sourceCol, int destRow, int destCol) const
         for (from; from <= to; from++)
         {
             if (board->getBoard()[from][sourceCol] != nullptr)
-                return 21;
+                return false;
         }
     }
     
-    board->changeTorn();
-    board->moveOfPiece(sourceRow, sourceCol, destRow, destCol);
-    return 42;
+    return true;
 }
 
-bool Rook::ifMakeChess(int sourceRow, int sourceCol) const
+bool Rook::ifMakeCheck(int sourceRow, int sourceCol) const
 {
     int from;
     if (sourceRow < 7) 

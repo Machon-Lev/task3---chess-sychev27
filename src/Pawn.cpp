@@ -3,12 +3,12 @@
 Pawn::Pawn(Player player, char type, Board* board) : Piece(player, type, board)
 {}
 
-int Pawn::move(int sourceRow, int sourceCol, int destRow, int destCol) const
+bool Pawn::ifLigalMove(int sourceRow, int sourceCol, int destRow, int destCol) const
 {
-    return 42;
+    return true;
 }
 
-bool Pawn::ifMakeChess(int sourceRow, int sourceCol) const
+bool Pawn::ifMakeCheck(int sourceRow, int sourceCol) const
 {
     return false;
 }

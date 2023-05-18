@@ -28,4 +28,6 @@ public:
 	void changeTorn();
 	void moveOfPiece(int sourceRow, int sourceCol, int destRow, int destCol);
 	int move(string sourceAndDest);
+	bool ifCheck(Player player);
+	Player getNewTorn();
 };

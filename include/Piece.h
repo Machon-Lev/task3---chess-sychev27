@@ -21,6 +21,6 @@ public:
     Piece(Player player, char type, Board* board);
     Player getPlayer();
     char getType();
-    virtual int move(int sourceRow, int sourceCol, int destRow, int destCol) const = 0;
-    virtual bool ifMakeChess(int sourceRow, int sourceCol) const = 0;
+    virtual bool ifLigalMove(int sourceRow, int sourceCol, int destRow, int destCol) const = 0;
+    virtual bool ifMakeCheck(int sourceRow, int sourceCol) const = 0;
 };

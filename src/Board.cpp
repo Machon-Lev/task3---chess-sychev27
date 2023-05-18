@@ -51,7 +51,43 @@ int Board::move(string sourceAndDest)
 	if (board[destRow][destCol] != nullptr && board[destRow][destCol]->getPlayer() == torn)
 		return 13;
 
-	return board[sourceRow][sourceCol]->move(sourceRow, sourceCol, destRow, destCol);
+	if (board[sourceRow][sourceCol]->ifLigalMove(sourceRow, sourceCol, destRow, destCol))
+	{
+		Piece* tempPiece = board[destRow][destCol];
+		moveOfPiece(sourceRow, sourceCol, destRow, destCol);
+		if (ifCheck(getNewTorn()))
+		{
+			board[sourceRow][sourceCol] = board[destRow][destCol];
+			board[destRow][destCol] = tempPiece;
+			return 31;
+		}
+
+		if (ifCheck(torn))
+		{
+			changeTorn();
+			return 41;
+		}
+
+		changeTorn();
+		return 42;
+	}
+
+	return 21; 
+}
+
+bool Board::ifCheck(Player player)
+{
+	for (size_t row = 0; row < 8; row++)
+	{
+		for (size_t col = 0; col < 8; col++)
+		{
+			if (board[row][col] != nullptr && board[row][col]->getPlayer() == player)
+				if (board[row][col]->ifMakeCheck(row, col))
+					return true;
+		}
+
+	}
+	return false;
 }
 
 void Board::changeTorn()
@@ -60,6 +96,14 @@ void Board::changeTorn()
 		torn = player_2;
 	else
 		torn = player_1;		
+}
+
+Player Board::getNewTorn()
+{
+	if (torn == player_1)
+		return player_2;
+	else
+		return player_1;
 }
 
 void Board::moveOfPiece(int sourceRow, int sourceCol, int destRow, int destCol)

@@ -3,12 +3,12 @@
 Bishop::Bishop(Player player, char type, Board* board) : Piece(player, type, board)
 {}
 
-int Bishop::move(int sourceRow, int sourceCol, int destRow, int destCol) const
+bool Bishop::ifLigalMove(int sourceRow, int sourceCol, int destRow, int destCol) const
 {
-    return 42;
+    return true;
 }
 
-bool Bishop::ifMakeChess(int sourceRow, int sourceCol) const
+bool Bishop::ifMakeCheck(int sourceRow, int sourceCol) const
 {
     return false;
 }
