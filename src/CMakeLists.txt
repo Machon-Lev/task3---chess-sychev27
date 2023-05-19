@@ -1,0 +1,10 @@
+﻿target_sources (ChessProject PRIVATE "main.cpp"
+							         "Chess.cpp"
+									 "Board.cpp"
+									 "Piece.cpp"
+									 "Bishop.cpp"
+									 "King.cpp"
+									 "Knight.cpp"
+									 "Pawn.cpp"
+									 "Queen.cpp"
+									 "Rook.cpp")
