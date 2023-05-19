@@ -13,6 +13,7 @@ bool ifLigalBishopMove(int sourceRow, int sourceCol, int destRow, int destCol, B
     int rowDifference = abs(sourceRow - destRow);
     int colDifference = abs(sourceCol - destCol);
 
+    // Check if the move is diagonal
     if (rowDifference != colDifference)
     {
         return false;
@@ -21,59 +22,68 @@ bool ifLigalBishopMove(int sourceRow, int sourceCol, int destRow, int destCol, B
     int fromRow, toRow, fromCol;
     if (destRow > sourceRow && destCol > sourceCol)
     {
+        // Move is diagonal towards bottom-right
         fromRow = sourceRow + 1;
         toRow = destRow - 1;
         fromCol = sourceCol + 1;
 
+        // Check for obstacles in the diagonal path
         for (int i = 0; i <= toRow - fromRow; i++)
         {
             if (board->getBoard()[fromRow + i][fromCol + i] != nullptr)
-                return false;
+                return false;  // Obstacle encountered, move is illegal
         }
     }
     else
     {
         if (destRow < sourceRow && destCol < sourceCol)
         {
+            // Move is diagonal towards top-left
             fromRow = destRow + 1;
             toRow = sourceRow - 1;
             fromCol = destCol + 1;
 
+            // Check for obstacles in the diagonal path
             for (int i = 0; i <= toRow - fromRow; i++)
             {
                 if (board->getBoard()[fromRow + i][fromCol + i] != nullptr)
-                    return false;
+                    return false;  // Obstacle encountered, move is illegal
             }
         }
         else
         {
             if (destRow > sourceRow && destCol < sourceCol)
             {
+                // Move is diagonal towards bottom-left
                 fromRow = sourceRow + 1;
                 toRow = destRow - 1;
                 fromCol = sourceCol - 1;
 
+                // Check for obstacles in the diagonal path
                 for (int i = 0; i <= toRow - fromRow; i++)
                 {
                     if (board->getBoard()[fromRow + i][fromCol - i] != nullptr)
-                        return false;
+                        return false;   // Obstacle encountered, move is illegal
                 }
             }
             else
             {
+                // Move is diagonal towards top-right
                 fromRow = sourceRow - 1;
                 toRow = destRow + 1;
                 fromCol = sourceCol + 1;
 
+                // Check for obstacles in the diagonal path
                 for (int i = 0; i <= toRow - fromRow; i++)
                 {
                     if (board->getBoard()[fromRow - i][fromCol + i] != nullptr)
-                        return false;
+                        return false;  // Obstacle encountered, move is illegal
                 }
             }
         }
     }
 
+    // No obstacles encountered, move is legal
     return true;
 }
 
@@ -87,6 +97,7 @@ bool ifBishopMakeCheck(int sourceRow, int sourceCol, Board* board, Player player
     int fromRow, fromCol;
     if (sourceRow < 7 && sourceCol < 7)
     {
+        // Check diagonal towards bottom-right
         fromRow = sourceRow + 1;
         fromCol = sourceCol + 1;
         for (int i = 0; i < 7; i++)
@@ -96,17 +107,18 @@ bool ifBishopMakeCheck(int sourceRow, int sourceCol, Board* board, Player player
                 if (board->getBoard()[fromRow + i][fromCol + i] != nullptr)
                 {
                     if (board->getBoard()[fromRow + i][fromCol + i]->getType() == 'k' && board->getBoard()[fromRow + i][fromCol + i]->getPlayer() != player)
-                        return true;
+                        return true;  // King found, bishop makes check
                     else
-                        break;
+                        break;       // Obstacle encountered, stop searching in this direction
                 }
             }
             else
-                break;
+                break;   // Reached the board edge, stop searching in this direction
         }
     }
     if (sourceRow > 0 && sourceCol > 0)
     {
+        // Check diagonal towards top-left
         fromRow = sourceRow - 1;
         fromCol = sourceCol - 1;
         for (int i = 0; i < 7; i++)
@@ -116,17 +128,18 @@ bool ifBishopMakeCheck(int sourceRow, int sourceCol, Board* board, Player player
                 if (board->getBoard()[fromRow - i][fromCol - i] != nullptr)
                 {
                     if (board->getBoard()[fromRow - i][fromCol - i]->getType() == 'k' && board->getBoard()[fromRow - i][fromCol - i]->getPlayer() != player)
-                        return true;
+                        return true;  // King found, bishop makes check
                     else
-                        break;
+                        break;  // Obstacle encountered, stop searching in this direction
                 }
             }
             else
-                break;
+                break;  // Reached the board edge, stop searching in this direction
         }
     }
     if (sourceRow < 7 && sourceCol > 0)
     {
+        // Check diagonal towards bottom-left
         fromRow = sourceRow + 1;
         fromCol = sourceCol - 1;
         for (int i = 0; i < 7; i++)
@@ -136,17 +149,18 @@ bool ifBishopMakeCheck(int sourceRow, int sourceCol, Board* board, Player player
                 if (board->getBoard()[fromRow + i][fromCol - i] != nullptr)
                 {
                     if (board->getBoard()[fromRow + i][fromCol - i]->getType() == 'k' && board->getBoard()[fromRow + i][fromCol - i]->getPlayer() != player)
-                        return true;
+                        return true;  // King found, bishop makes check
                     else
-                        break;
+                        break;  // Obstacle encountered, stop searching in this direction
                 }
             }
             else
-                break;
+                break;  // Reached the board edge, stop searching in this direction
         }
     }
     if (sourceRow > 0 && sourceCol < 7)
     {
+        // Check diagonal towards top-right
         fromRow = sourceRow - 1;
         fromCol = sourceCol + 1;
         for (int i = 0; i < 7; i++)
@@ -156,14 +170,14 @@ bool ifBishopMakeCheck(int sourceRow, int sourceCol, Board* board, Player player
                 if (board->getBoard()[fromRow - i][fromCol + i] != nullptr)
                 {
                     if (board->getBoard()[fromRow - i][fromCol + i]->getType() == 'k' && board->getBoard()[fromRow - i][fromCol + i]->getPlayer() != player)
-                        return true;
+                        return true;  // King found, bishop makes check
                     else
-                        break;
+                        break;   // Obstacle encountered, stop searching in this direction
                 }
             }
             else
-                break;
+                break;  // Reached the board edge, stop searching in this direction
         }
     }
-    return false;
+    return false;  // No king found in any diagonal direction
 }
