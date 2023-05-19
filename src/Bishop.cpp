@@ -5,6 +5,11 @@ Bishop::Bishop(Player player, char type, Board* board) : Piece(player, type, boa
 
 bool Bishop::ifLigalMove(int sourceRow, int sourceCol, int destRow, int destCol) const
 {
+    return ifLigalBishopMove(sourceRow, sourceCol, destRow, destCol, board);
+}
+
+bool ifLigalBishopMove(int sourceRow, int sourceCol, int destRow, int destCol, Board* board)
+{
     int rowDifference = abs(sourceRow - destRow);
     int colDifference = abs(sourceCol - destCol);
 
@@ -73,6 +78,11 @@ bool Bishop::ifLigalMove(int sourceRow, int sourceCol, int destRow, int destCol)
 }
 
 bool Bishop::ifMakeCheck(int sourceRow, int sourceCol) const
+{
+    return ifBishopMakeCheck(sourceRow, sourceCol, board, player);
+}
+
+bool ifBishopMakeCheck(int sourceRow, int sourceCol, Board* board, Player player)
 {
     int fromRow, fromCol;
     if (sourceRow < 7 && sourceCol < 7)

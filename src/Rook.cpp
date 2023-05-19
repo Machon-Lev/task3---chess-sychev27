@@ -4,6 +4,11 @@ Rook::Rook(Player player, char type, Board* board) : Piece(player, type, board)
 {}
 
 bool Rook::ifLigalMove(int sourceRow, int sourceCol, int destRow, int destCol) const
+{   
+    return ifLigalRookMove(sourceRow, sourceCol, destRow, destCol, board);
+}
+
+bool ifLigalRookMove(int sourceRow, int sourceCol, int destRow, int destCol, Board* board)
 {
     if (sourceRow != destRow && sourceCol != destCol)
         return false;
@@ -47,14 +52,18 @@ bool Rook::ifLigalMove(int sourceRow, int sourceCol, int destRow, int destCol) c
                 return false;
         }
     }
-    
     return true;
 }
 
 bool Rook::ifMakeCheck(int sourceRow, int sourceCol) const
 {
+    return ifRookeMakeCheck(sourceRow, sourceCol, board, player);
+}
+
+bool ifRookeMakeCheck(int sourceRow, int sourceCol, Board* board, Player player)
+{
     int from;
-    if (sourceRow < 7) 
+    if (sourceRow < 7)
     {
         from = sourceRow + 1;
         for (from; from <= 7; from++)
